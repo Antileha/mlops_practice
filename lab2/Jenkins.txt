@@ -1,0 +1,80 @@
+Started by user antileha
+Obtained Jenkinsfile from git https://github.com/Antileha/MLObs.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/mlops
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/Antileha/MLObs.git
+ > git init /var/jenkins_home/workspace/mlops # timeout=10
+Fetching upstream changes from https://github.com/Antileha/MLObs.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.2'
+ > git fetch --tags --force --progress -- https://github.com/Antileha/MLObs.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/Antileha/MLObs.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision e2fb49f1eae84a3c47762bef1e716f9f1eab4e65 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f e2fb49f1eae84a3c47762bef1e716f9f1eab4e65 # timeout=10
+Commit message: "Update Jenkinsfile"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Setup Environment)
+[Pipeline] sh
++ echo Setting up environment...
+Setting up environment...
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Download Data)
+[Pipeline] sh
++ python3 HW_2_2/scripts/download_data.py
+Data downloaded and saved to iris.csv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Preprocess Data)
+[Pipeline] sh
++ python3 HW_2_2/scripts/preprocess.py
+Данные предобработаны и сохранены в наборы для обучения и тестирования.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Train Model)
+[Pipeline] sh
++ python3 HW_2_2/scripts/train_model.py
+Модель обучена и сохранена как iris_model.pkl
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test Model)
+[Pipeline] sh
++ python3 HW_2_2/scripts/test_model.py
+Model accuracy: 100.00%
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] sh
++ echo Pipeline completed.
+Pipeline completed.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
